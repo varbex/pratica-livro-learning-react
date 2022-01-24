@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning React</title>
+  </head>
+  <body>
+    <div id="react-raiz"></div>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+
+    <script>
+      const ingredientes = ["1 pão", "1 ovo", "1 presunto"];
+
+      const listaDeIngredientes = ({ingredientes}) =>
+        React.createElement(
+          "ul",
+          { className: "ingredientes" },
+          ingredientes.map((ingrediente, i) =>
+            React.createElement("li", { key: i }, ingrediente)
+          )
+        );
+
+      var home = React.createElement(listaDeIngredientes, { ingredientes }, null);
+
+      ReactDOM.render(home, document.getElementById("react-raiz"));
+    </script>
+  </body>
+</html>
