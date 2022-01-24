@@ -20,7 +20,7 @@
     <script>
       const ingredientes = ["1 pão", "1 ovo", "1 presunto"];
 
-      const listaDeIngredientes = ({ingredientes}) =>
+      const listaDeIngredientes = ({ ingredientes }) =>
         React.createElement(
           "ul",
           { className: "ingredientes" },
@@ -29,7 +29,11 @@
           )
         );
 
-      var home = React.createElement(listaDeIngredientes, { ingredientes }, null);
+      var home = React.createElement(
+        listaDeIngredientes,
+        { ingredientes },
+        null
+      );
 
       ReactDOM.render(home, document.getElementById("react-raiz"));
     </script>

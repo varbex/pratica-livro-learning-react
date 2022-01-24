@@ -16,26 +16,31 @@
       crossorigin
       src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
     ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/create-react-class@15.6.0/create-react-class.js"
+    ></script>
 
     <script>
-      const ingredientes = ["1 pão", "1 ovo", "1 presunto"];
+      // Componentizando somente a lista.
+      const arrayIngredientes = ["1 pão", "1 ovo", "1 presunto"];
 
-      class ListaIngredientes extends React.Component {
-        renderItemLista(ingrediente, i) {
-          return React.createElement("li", { key: i }, ingrediente);
-        }
-        render() {
+      const listaIngredientes = createReactClass({
+        displayName: "ListaIngredientes",
+        render: function () {
           return React.createElement(
             "ul",
             { className: "ingredientes" },
-            this.props.ingredientes.map(this.renderItemLista)
+            this.props.arrayIngredientes.map((ingrediente, i) =>
+              React.createElement("li", { key: i }, ingrediente)
+            )
           );
-        }
-      }
+        },
+      });
 
       var home = React.createElement(
-        ListaIngredientes,
-        { ingredientes },
+        listaIngredientes,
+        { arrayIngredientes },
         null
       );
 

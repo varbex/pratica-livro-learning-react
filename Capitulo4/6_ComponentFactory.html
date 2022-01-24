@@ -16,15 +16,25 @@
       crossorigin
       src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
     ></script>
-    <script src="https://unpkg.com/react-dom-factories@1.0.0/index.js"></script>
+
     <script>
-      var home = React.createElement(
-        "h1",
-        null,
-        "Alo mundo Pure React Interpretado."
+      const listaGenerica = ({ lista }) =>
+        React.createElement(
+          "ul",
+          null,
+          ingredientes.map((item, i) =>
+            React.createElement("li", { key: i }, item)
+          )
+        );
+
+      const listaFactory = React.createFactory(listaGenerica);
+
+      const ingredientes = ["1 pão", "1 ovo", "1 presunto"];
+
+      ReactDOM.render(
+        listaFactory({ ingredientes }),
+        document.getElementById("react-raiz")
       );
-      //var home = ReactDOMFactories.h1(null,"Alo mundo Pure React Interpretado."); Usando Factory
-      ReactDOM.render(home, document.getElementById("react-raiz"));
     </script>
   </body>
 </html>
