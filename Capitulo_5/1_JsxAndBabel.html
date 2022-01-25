@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning React</title>
+  </head>
+  <body>
+    <div id="react-raiz"></div>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+      var data = [
+        {
+          name: "Baked Salmon",
+          ingredients: [
+            { name: "Salmon", amount: 1, measurement: "lb" },
+            { name: "Pine Nuts", amount: 1, measurement: "cup" },
+            { name: "Butter Lettuce", amount: 2, measurement: "cups" },
+            { name: "Yellow Squash", amount: 1, measurement: "med" },
+            { name: "Olive Oil", amount: 0.5, measurement: "cup" },
+            { name: "Garlic", amount: 3, measurement: "cloves" },
+          ],
+          steps: [
+            "Preheat the oven to 350 degrees.",
+            "Spread the olive oil around a glass baking dish.",
+            "Add the salmon, garlic, and pine nuts to the dish.",
+            "Bake for 15 minutes.",
+            "Add the yellow squash and put back in the oven for 30 mins.",
+            "Remove from oven and let cool for 15 minutes. Add the lettuce and serve.",
+          ],
+        },
+        {
+          name: "Fish Tacos",
+          ingredients: [
+            { name: "Whitefish", amount: 1, measurement: "lb" },
+            { name: "Cheese", amount: 1, measurement: "cup" },
+            { name: "Iceberg Lettuce", amount: 2, measurement: "cups" },
+            { name: "Tomatoes", amount: 2, measurement: "large" },
+            { name: "Tortillas", amount: 3, measurement: "med" },
+          ],
+          steps: [
+            "Cook the fish on the grill until hot.",
+            "Place the fish on the 3 tortillas.",
+            "Top them with lettuce, tomatoes, and cheese.",
+          ],
+        },
+      ];
+
+      const Receita = (props) => (
+        <section id={props.name.toLowerCase().replace(/ /g, "-")}>
+          <h1>{props.name}</h1>
+          <ul className="ingredients">
+            {props.ingredients.map((ingredient, i) => (
+              <li key={i}>{ingredient.name}</li>
+            ))}
+          </ul>
+          <section className="instrucoes">
+            <h2>Cooking Instructions</h2>
+            {props.steps.map((step, i) => (
+              <p key={i}>{step}</p>
+            ))}
+          </section>
+        </section>
+      );
+
+      const Menu = (props) => (
+        <article>
+          <header>
+            <h1>{props.title}</h1>
+          </header>
+          <div className="receitas">
+            {props.receitas.map((receita, i) => (
+              <Receita
+                key={i}
+                name={receita.name}
+                ingredients={receita.ingredients}
+                steps={receita.steps}
+              />
+            ))}
+          </div>
+        </article>
+      );
+
+      ReactDOM.render(
+        <Menu receitas={data} title="Receitas Deliciosas" />,
+        document.getElementById("react-raiz")
+      );
+    </script>
+  </body>
+</html>
